@@ -11,7 +11,7 @@ class Screen
     int width;
 public:
     Screen (int h,int w): height{h}, width{w} {}
-    Screen(const Screen& other) : height{other.height}, width{other.width} {}
+    Screen(const Screen& other) = default;
     Screen& operator=(const Screen& other)
     {
         height = other.height;
@@ -32,7 +32,7 @@ class Gamemode
     int rows;
     int columns;
 public:
-    Gamemode(string gs): gamemode{gs}
+    explicit Gamemode(const string &gs): gamemode{gs}
     {
         if(gamemode=="classic")
         {
@@ -89,7 +89,7 @@ public:
         balance+=b;
         total_inserted+=b;
     }
-    void double_the_win(int win,string culoare)
+    void double_the_win(int win,const string &culoare)
     {
         balance-=win;
         srand(time(NULL));
@@ -121,20 +121,19 @@ public:
     {
         vector<vector<string>> table(rows , vector<string> (columns));
         srand(time(NULL));
-        int columnindex=0;
-        int rowindex=0;
-        for (int rowindex=0;rowindex<rows;rowindex++)
-            for (int columnindex=0;columnindex<columns;columnindex++)
+        for ( int rowindex=0;rowindex<rows;rowindex++)
+            for ( int columnindex=0;columnindex<columns;columnindex++)
             {
                 float ch=float(rand()%100)/100;
                 float weighttotal=0;
-                int i=0;
+                int ind=0;
                 while(weighttotal<=ch)
                 {
-                    weighttotal=weighttotal+weights[i];
-                    i+=1;
+                    weighttotal=weighttotal+weights[ind];
+                    ind+=1;
                 }
-                table[rowindex][columnindex]=icons[i-1];
+                if(ind!=0)
+                table[rowindex][columnindex]=icons[ind-1];
             }
 
         /*for(int i=0;i<rows;i++)
@@ -144,10 +143,9 @@ public:
             }*/
         return table;
     }
-    int calculate_multiplier(vector<vector<string>> t,int rows,int columns,vector<float> weights,vector<string> icons)
+    [[maybe_unused]] int calculate_multiplier(vector<vector<string>> t,int rows,int columns,vector<float> weights,vector<string> icons)
     {
         float multiplier=0;
-
         for(int i=0;i<rows;i++)
             for(int j=0;j<columns-2;j++)
                 {
