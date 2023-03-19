@@ -31,7 +31,7 @@ public:
 class Gamemode {
     string gamemode;
     vector<string> icons;
-    vector<float> weights;
+    vector<double> weights;
     int rows;
     int columns;
 public:
@@ -72,7 +72,7 @@ public:
         return icons;
     }
 
-    vector<float> getWeights() {
+    vector<double> getWeights() {
         return weights;
     }
 };
@@ -128,7 +128,7 @@ public:
         cout << "you multiplied your $" << b << "by:" << m << endl;
     }
 
-    vector<vector<string>> generate_table(int rows, int columns, vector<float> weights, vector<string> icons) {
+    vector<vector<string>> generate_table(int rows, int columns, vector<double> weights, vector<string> icons) {
         vector<vector<string>> table(rows, vector<string>(columns));
         srand(time(NULL));
         for (int rowindex = 0; rowindex < rows; rowindex++)
@@ -153,7 +153,7 @@ public:
     }
 
     int
-    calculate_multiplier(vector<vector<string>> t, int rows, int columns, vector<float> weights, vector<string> icons) {
+    calculate_multiplier(vector<vector<string>> t, int rows, int columns, vector<double> weights, vector<string> icons) {
         float multiplier = 0;
         for (int i1 = 0; i1 < rows; i1++)
             for (int j1 = 0; j1 < columns - 2; j1++)
