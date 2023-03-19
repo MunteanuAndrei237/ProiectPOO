@@ -95,10 +95,18 @@ public:
         srand(time(NULL));
         int ch=rand();
             if (ch%2==0)
-                {cout<<"You won:"<<win<<endl;
+                {if(culoare=="black")
+                    cout<<"Black.";
+                    else
+                        cout<<"Red.";
+                cout<<"You won:"<<win<<endl;
                 win*=2;}
             else
-                {cout<<"You lost:"<<win<<endl;
+            {if(culoare=="black")
+                cout<<"Red.";
+            else
+                cout<<"Black.";
+                cout<<"You lost:"<<win<<endl;
                 win=0;}
         balance+=win;
     }
@@ -175,7 +183,7 @@ int main()
     Hud hud1;
     hud1.insert_balance(200);
     hud1.play(10,g1);
-    hud1.double_the_win(10,"Negru");
+    hud1.double_the_win(10,"black");
     hud1.cashout();
     return 0;
 }
