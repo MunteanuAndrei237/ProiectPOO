@@ -51,29 +51,48 @@ public:
 
     friend std::ostream &operator<<(std::ostream &os, const Gamemode &a) {
         os << "gamemode: " << a.gamemode << ", icons:[ ";
-        for (int i = 0; i < int(a.icons.size()); i++)
+        for (auto i = 0; i < a.icons.size(); i++)
             os << a.icons[i] << ", ";
         os << "], weights:[ ";
-        for (int i = 0; i < int(a.weights.size()); i++)
+        for (auto i = 0; i < a.weights.size(); i++)
             os << a.weights[i] << ", ";
         os << "]\n";
         return os;
     }
-
-    int getRows() {
-        return rows;
+    vector<vector<string>> generate_table() {
+        vector<vector<string>> table(rows, vector<string>(columns));
+        srand(time(NULL));
+        for (int rowindex = 0; rowindex < rows; rowindex++)
+            for (int columnindex = 0; columnindex < columns; columnindex++) {
+                float ch = float(rand() % 100) / 100;
+                float weighttotal = 0;
+                int ind = 0;
+                while (weighttotal <= ch) {
+                    weighttotal = weighttotal + weights[ind];
+                    ind += 1;
+                }
+                if (ind != 0)
+                    table[rowindex][columnindex] = icons[ind - 1];
+            }
+        return table;
     }
-
-    int getColumns() {
-        return columns;
-    }
-
-    vector<string> getIcons() {
-        return icons;
-    }
-
-    vector<double> getWeights() {
-        return weights;
+    int calculate_multiplier(vector<vector<string>> t) {
+        float multiplier = 0;
+        for (int i = 0; i < rows; i++)
+            for (int j = 0; j < columns - 2; j++)
+                if (t[i][j] == t[i][j + 1] && t[i][j + 1] == t[i][j + 2]) {
+                    for (auto k = 0; k < icons.size(); k++)
+                        if (icons[k] == t[i][j])
+                            multiplier += float(1 / weights[k]);
+                }
+        for (int i = 0; i < rows - 2; i++)
+            for (int j = 0; j < columns - 2; j++)
+                if (t[i][j] == t[i + 1][j + 1] && t[i + 1][j + 1] == t[i + 2][j + 2]) {
+                    for (auto k = 0; k <icons.size(); k++)
+                        if (icons[k] == t[i][j])
+                            multiplier += float(1 / weights[k]) * 1.3;
+                }
+        return multiplier;
     }
 };
 
@@ -122,55 +141,10 @@ public:
 
     void play(int b, Gamemode g) {
         balance -= b;
-        vector<vector<string>> t = generate_table(g.getRows(), g.getColumns(), g.getWeights(), g.getIcons());
-        int m = calculate_multiplier(t, g.getRows(), g.getColumns(), g.getWeights(), g.getIcons());
+        vector<vector<string>> t = g.generate_table();
+        int m = g.calculate_multiplier(t);
         balance += m * b;
-        cout << "you multiplied your $" << b << "by:" << m << endl;
-    }
-
-    vector<vector<string>> generate_table(int rows, int columns, vector<double> weights, vector<string> icons) {
-        vector<vector<string>> table(rows, vector<string>(columns));
-        srand(time(NULL));
-        for (int rowindex = 0; rowindex < rows; rowindex++)
-            for (int columnindex = 0; columnindex < columns; columnindex++) {
-                float ch = float(rand() % 100) / 100;
-                float weighttotal = 0;
-                int ind = 0;
-                while (weighttotal <= ch) {
-                    weighttotal = weighttotal + weights[ind];
-                    ind += 1;
-                }
-                if (ind != 0)
-                    table[rowindex][columnindex] = icons[ind - 1];
-            }
-
-        /*for(int i=0;i<rows;i++)
-            {for(int j=0;j<columns;j++)
-                cout<<table[i][j]<<" ";
-            cout<<endl;
-            }*/
-        return table;
-    }
-
-    int
-    calculate_multiplier(vector<vector<string>> t, int rows, int columns, vector<double> weights, vector<string> icons) {
-        float multiplier = 0;
-        for (int i1 = 0; i1 < rows; i1++)
-            for (int j1 = 0; j1 < columns - 2; j1++)
-                if (t[i1][j1] == t[i1][j1 + 1] && t[i1][j1 + 1] == t[i1][j1 + 2]) {
-                    for (int k = 0; k < int(icons.size()); k++)
-                        if (icons[k] == t[i1][j1])
-                            multiplier += float(1 / weights[k]);
-                }
-
-        for (int i2 = 0; i2 < rows - 2; i2++)
-            for (int j2 = 0; j2 < columns - 2; j2++)
-                if (t[i2][j2] == t[i2 + 1][j2 + 1] && t[i2 + 1][j2 + 1] == t[i2 + 2][j2 + 2]) {
-                    for (int k = 0; k < int(icons.size()); k++)
-                        if (icons[k] == t[i2][j2])
-                            multiplier += float(1 / weights[k]) * 1.3;
-                }
-        return multiplier;
+        cout << "you multiplied your $" << b << " by: " << m << endl;
     }
 
 };
