@@ -2,8 +2,8 @@
 
 ### Tema 0
 
-- [ ] Nume proiect (poate fi schimbat ulterior)
-- [ ] Scurtă descriere a temei alese, ce v-ați propus să implementați
+- Slot machine
+- Clasa screen contine dimensiunile ecranului. Clasa gamemode alege modul de joc(clasic sau book of ra), iar functiie generate_table si calculate_multiplier au rolul de a genera un tabel cu elemente si a calcula multiplierul daca apar elemente de acelasi fel consecutive pe randuri sau diagonale. Clasa Hud are 4 functii: insert balance, double the win, care poate dubla castigul daca este aleasa culoarea corecta, cashout, care afiseaza profitul, si play, care este echivalentul unei "rotiri" pe o anumita suma.
 
 ## Tema 1
 
