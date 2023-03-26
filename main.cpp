@@ -5,29 +5,6 @@
 
 using namespace std;
 
-
-class Screen {
-    int height;
-    int width;
-public:
-    Screen(int h, int w) : height{h}, width{w} {}
-
-    Screen(const Screen &other) = default;
-
-    Screen &operator=(const Screen &other) {
-        height = other.height;
-        width = other.width;
-        return *this;
-    }
-
-    ~Screen() {};
-
-    friend std::ostream &operator<<(std::ostream &os, const Screen &a) {
-        os << "height: " << a.height << ", width: " << a.width << "\n";
-        return os;
-    }
-};
-
 class Gamemode {
     string gamemode;
     vector<string> icons;
@@ -51,17 +28,16 @@ public:
 
     friend std::ostream &operator<<(std::ostream &os, const Gamemode &a) {
         os << "gamemode: " << a.gamemode << ", icons:[ ";
-        for (auto i = 0; i < a.icons.size(); i++)
+        for (unsigned int i = 0; i < a.icons.size(); i++)
             os << a.icons[i] << ", ";
         os << "], weights:[ ";
-        for (auto i = 0; i < a.weights.size(); i++)
+        for (unsigned int i = 0; i < a.weights.size(); i++)
             os << a.weights[i] << ", ";
         os << "]\n";
         return os;
     }
     vector<vector<string>> generate_table() {
         vector<vector<string>> table(rows, vector<string>(columns));
-        srand(time(NULL));
         for (int rowindex = 0; rowindex < rows; rowindex++)
             for (int columnindex = 0; columnindex < columns; columnindex++) {
                 float ch = float(rand() % 100) / 100;
@@ -74,6 +50,11 @@ public:
                 if (ind != 0)
                     table[rowindex][columnindex] = icons[ind - 1];
             }
+        for(int i=0;i<rows;i++)
+            {for(int j=0;j<columns;j++)
+                cout<<table[i][j]<<" ";
+            cout<<endl;
+            }
         return table;
     }
     int calculate_multiplier(vector<vector<string>> t) {
@@ -81,14 +62,14 @@ public:
         for (int i = 0; i < rows; i++)
             for (int j = 0; j < columns - 2; j++)
                 if (t[i][j] == t[i][j + 1] && t[i][j + 1] == t[i][j + 2]) {
-                    for (auto k = 0; k < icons.size(); k++)
+                    for (unsigned int k = 0; k < icons.size(); k++)
                         if (icons[k] == t[i][j])
                             multiplier += float(1 / weights[k]);
                 }
         for (int i = 0; i < rows - 2; i++)
             for (int j = 0; j < columns - 2; j++)
                 if (t[i][j] == t[i + 1][j + 1] && t[i + 1][j + 1] == t[i + 2][j + 2]) {
-                    for (auto k = 0; k <icons.size(); k++)
+                    for (unsigned int k = 0; k <icons.size(); k++)
                         if (icons[k] == t[i][j])
                             multiplier += float(1 / weights[k]) * 1.3;
                 }
@@ -113,7 +94,6 @@ public:
 
     void double_the_win(int win, const string &culoare) {
         balance -= win;
-        srand(time(NULL));
         int ch = rand();
         if (ch % 2 == 0) {
             if (culoare == "black")
@@ -149,13 +129,51 @@ public:
 
 };
 
+class Screen {
+    int height;
+    int width;
+    Hud hud;
+public:
+    Screen(int h, int w, Hud hud_) : height{h}, width{w} ,hud{hud_} {}
+
+    Screen(const Screen &other): height{other.height}, width{other.width} {};
+
+    Screen &operator=(const Screen &other) {
+        height = other.height;
+        width = other.width;
+        return *this;
+    }
+
+    ~Screen() {};
+
+    friend std::ostream &operator<<(std::ostream &os, const Screen &a) {
+        os << "height: " << a.height << ", width: " << a.width << "\n";
+        return os;
+    }
+    void print_hud(){
+        cout<<hud;
+    }
+};
+
 
 int main() {
-    Screen screen1(1080, 1920);
+    srand(time(NULL));
+    Screen screen1(1080, 1920,{});
+    Screen screen2=screen1;
+    Screen screen3(screen1);
+    cout<<screen2;
+    cout<<screen3;
     Gamemode g1("classic");
+    cout<<g1;
     Hud hud1;
-    hud1.insert_balance(200);
+    cout<<hud1;
+    screen1.print_hud();
+    hud1.insert_balance(100);
+    hud1.insert_balance(50);
     hud1.play(10, g1);
+    hud1.play(10, g1);
+    Gamemode g2("book_of_ra");
+    hud1.play(20, g2);
     hud1.double_the_win(10, "black");
     hud1.cashout();
     return 0;
