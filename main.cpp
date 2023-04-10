@@ -12,7 +12,7 @@ class Gamemode {
     int rows;
     int columns;
 public:
-    Gamemode(const string &gs) : gamemode{gs} {
+    explicit Gamemode(const string &gs) : gamemode{gs} {
         if (gamemode == "classic") {
             weights = {0.25, 0.2, 0.2, 0.05, 0.05, 0.3};
             icons = {"cherry", "orange", "banana", "seven", "crown", "melon"};
