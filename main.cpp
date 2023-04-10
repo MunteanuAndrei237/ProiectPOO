@@ -12,7 +12,7 @@ class Gamemode {
     int rows;
     int columns;
 public:
-    explicit Gamemode(const string &gs) : gamemode{gs} {
+    Gamemode(const string &gs) : gamemode{gs} {
         if (gamemode == "classic") {
             weights = {0.25, 0.2, 0.2, 0.05, 0.05, 0.3};
             icons = {"cherry", "orange", "banana", "seven", "crown", "melon"};
@@ -133,14 +133,16 @@ class Screen {
     int height;
     int width;
     Hud hud;
+    Gamemode sgamemode;
 public:
-    Screen(int h, int w, Hud hud_) : height{h}, width{w} ,hud{hud_} {}
+    Screen(int h, int w, Hud hud_,string gamemodegs) : height{h}, width{w} ,hud{hud_}, sgamemode{gamemodegs} {};
 
-    Screen(const Screen &other): height{other.height}, width{other.width} {};
+    Screen(const Screen &other): height{other.height}, width{other.width} ,sgamemode{other.sgamemode} {};
 
     Screen &operator=(const Screen &other) {
         height = other.height;
         width = other.width;
+        sgamemode=other.sgamemode;
         return *this;
     }
 
@@ -158,7 +160,7 @@ public:
 
 int main() {
     srand(time(NULL));
-    Screen screen1(1080, 1920,{});
+    Screen screen1(1080, 1920,{},{"classic"});
     Screen screen2=screen1;
     Screen screen3(screen1);
     cout<<screen2;
