@@ -135,7 +135,7 @@ class Screen {
     Hud hud;
     Gamemode sgamemode;
 public:
-    Screen(int h, int w, Hud hud_,string gamemodegs) : height{h}, width{w} ,hud{hud_}, sgamemode{gamemodegs} {};
+    Screen(int h, int w, Hud hud_,const string &gamemodegs) : height{h}, width{w} ,hud{hud_}, sgamemode{gamemodegs} {};
 
     Screen(const Screen &other): height{other.height}, width{other.width} ,sgamemode{other.sgamemode} {};
 
