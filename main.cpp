@@ -36,6 +36,7 @@ public:
         os << "]\n";
         return os;
     }
+    
     vector<vector<string>> generate_table() {
         vector<vector<string>> table(rows, vector<string>(columns));
         for (int rowindex = 0; rowindex < rows; rowindex++)
