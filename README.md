@@ -1,4 +1,4 @@
-# OOP Template
+# Slot machine
 
 ### Tema 0
 
