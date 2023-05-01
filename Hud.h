@@ -24,7 +24,7 @@ public:
 
     Hud &operator=(const Hud &other) ;
 
-    ~Hud();
+    virtual ~Hud();
 
     friend std::ostream &operator<<(std::ostream &os, const Hud &hudcout);
 

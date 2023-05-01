@@ -22,8 +22,7 @@ Screen::Screen(int h, int w, std::shared_ptr<Hud> h_, const std::string &gamemod
     checkscreen();
 };
 
-Screen::Screen(const Screen &other) : height{other.height}, width{other.width}, sgamemode{other.sgamemode},
-                                      h{other.h->clone()} {};
+Screen::Screen(const Screen &other) : height{other.height}, width{other.width},h{other.h->clone()}, sgamemode{other.sgamemode} {};
 
 void swop(Screen &s1, Screen &s2) {
     std::swap(s1.height, s2.height);
