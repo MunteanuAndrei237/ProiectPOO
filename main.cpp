@@ -8,6 +8,7 @@
 #include "Hud_main.cpp"
 #include "Hud_double.cpp"
 #include "Screen.cpp"
+
 int main() {
     srand(time(nullptr));
     Gamemode g1("classic");
