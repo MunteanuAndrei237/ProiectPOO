@@ -1,6 +1,8 @@
 //
 // Created by Andrei on 5/1/2023.
 //
+#include <iostream>
+#include <cmath>
 #include "Hud_double.h"
 
 Hud_double::Hud_double() = default;
@@ -19,28 +21,100 @@ Hud_double::~Hud_double() = default;
         return std::make_shared<Hud_double>(*this);
     }
 
-    void Hud_double::double_the_win(float amount, const std::string &culoare) {
-        if (getbalance() >= amount) {
-            setbalance(getbalance() - amount);
-            int ch = rand();
-            if (ch % 2 == 0) {
-                if (culoare == "black")
-                    std::cout << "Black.";
-                else
-                    std::cout << "Red.";
-                std::cout << "You won:" << amount << "\n";
-                amount *= 2;
-            } else {
-                if (culoare == "black")
-                    std::cout << "Red.";
-                else
-                    std::cout << "Black.";
-                std::cout << "You lost:" << amount << "\n";
-                amount = 0;
+    void Hud_double::double_the_win(float amount) {
+        std::string culoare;
+        tries+=1;
+        if(tries==1)
+        { if (balance >= amount) {
+                balance -= amount;
             }
-            setbalance(getbalance() + amount);
-        } else {
-            std::cout << "not enough funds\n";
+            else {
+                std::cout << "not enough funds\n";
+            }
+            std::cout<<"culoare(red/black):";
+            std::cin>>culoare;
+            if(culoare=="black")
+            {
+                int ch = rand();
+                if(ch%2==0)
+                {
+                    std::cout << "Red.You lost"<<"\n";
+                    amount=0;
+                    tries=0;
+                }
+                else
+                {
+                    amount*=2;
+                    std::cout << "Black.You won:" << amount << "\n";
+                    double_the_win(amount);
+                };
+            }
+            else if(culoare=="red") {
+                int ch = rand();
+                if (ch % 2 == 0) {
+                    std::cout << "Black.You lost" << "\n";
+                    amount = 0;
+                    tries = 0;
+                } else {
+                    amount *= 2;
+                    std::cout << "Red.You won:" << amount << "\n";
+                    double_the_win(amount);
+                };
+            }
         }
+        else if(tries>1 and tries<=5)
+            {
+                std::cout<<"culoare(red/black/cashout):";
+                std::cin>>culoare;
+                if(culoare=="black")
+                {
+                    int ch = rand();
+                    if(ch%2==0)
+                    {
+                        std::cout << "Red.You lost"<<"\n";
+                        amount=0;
+                        tries=0;
+                    }
+                    else
+                    {
+                        amount*=2;
+                        std::cout << "Black.You won:" << amount << "\n";
+                        double_the_win(amount);
+                    };
+                }
+                else if(culoare=="red")
+                {
+                    int ch = rand();
+                    if(ch%2==0)
+                    {
+                        std::cout << "Black.You lost"<<"\n";
+                        amount=0;
+                        tries=0;
+                    }
+                    else
+                    {
+                        amount*=2;
+                        std::cout << "Red.You won:" << amount << "\n";
+                        double_the_win(amount);
+                    };
+                }
+                else if(culoare=="cashout")
+                {
+                    cashout();
+                }
+            }
+        else if (tries==6)
+        {
+            cashout();
+        }
+        }
+
+    void Hud_double::cashout() {
+        int amountinitiallyinserted=total_inserted-balance;
+        int realtries=tries-1;
+        int totalwin=amountinitiallyinserted*pow(2,realtries);
+        std::cout << "You doubled your " << amountinitiallyinserted<<"$ "<<realtries<<" time(s) and turned it into:"<<totalwin<< "$\n";
+        balance+=totalwin;
+        tries=0;
     }
 

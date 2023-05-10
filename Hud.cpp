@@ -9,6 +9,7 @@
     }
 
     void Hud::setbalance(float newamount) {
+
         balance = newamount;
     }
 
@@ -35,8 +36,3 @@ Hud::~Hud() {};
         total_inserted += amount;
     }
 
-    void Hud::cashout() {
-        std::cout << "Money inserted:" << total_inserted << "\n";
-        std::cout << "Money out:" << balance << "\n";
-        std::cout << "Profit:" << balance - total_inserted << "\n";
-    }

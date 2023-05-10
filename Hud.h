@@ -7,6 +7,7 @@
 #include <iostream>
 #include <memory>
 class Hud {
+protected:
     float balance = 0;
     float total_inserted = 0;
 public:
@@ -30,7 +31,7 @@ public:
 
     void insert_balance(float amount);
 
-    void cashout();
+    virtual void cashout()=0;
 
 };
 

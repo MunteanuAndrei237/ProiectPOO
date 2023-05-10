@@ -1,7 +1,7 @@
 //
 // Created by Andrei on 4/30/2023.
 //
-#include<vector>
+#include <vector>
 #include <string>
 #include "Gamemode.h"
     Gamemode::Gamemode(const std::string &gs) : gamemode{gs} {

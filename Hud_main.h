@@ -5,6 +5,7 @@
 #ifndef PROIECTPOO_HUD_MAIN_H
 #define PROIECTPOO_HUD_MAIN_H
 #include "Hud.h"
+#include "Gamemode.h"
 
 
 class Hud_main : public Hud {
@@ -22,6 +23,8 @@ public:
     [[nodiscard]] const std::shared_ptr<Hud> clone() const override;
 
     void play(float amount, Gamemode g);
+
+    void cashout() override;
 };
 
 

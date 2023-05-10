@@ -7,6 +7,7 @@
 #include "Hud.h"
 
 class Hud_double : public Hud {
+    int tries=0;
 public:
     Hud_double() ;
 
@@ -20,7 +21,9 @@ public:
 
     [[nodiscard]] const std::shared_ptr<Hud> clone() const override ;
 
-    void double_the_win(float amount, const std::string &culoare) ;
+    void double_the_win(float amount) ;
+
+    void cashout() override;
 };
 
 

@@ -21,14 +21,20 @@ Hud_main::~Hud_main() = default;
     }
 
     void Hud_main::play(float amount, Gamemode g) {
-        if (getbalance() >= amount) {
-            setbalance(getbalance() - amount);
+        if (balance >= amount) {
+            balance-=amount;
             std::vector<std::vector<std::string>> table = g.generate_table();
             double multiplier = g.calculate_multiplier(table);
-            setbalance(getbalance() + multiplier * amount);
+            balance+= multiplier * amount;
             std::cout << "you multiplied your $" << amount << " by: " << multiplier << "\n";
         } else {
             std::cout << "not enough funds";
         }
     }
+    void Hud_main::cashout() {
+        std::cout << "Money inserted:" << total_inserted << "\n";
+        std::cout << "Money out:" << balance << "\n";
+        std::cout << "Profit:" << balance - total_inserted << "\n";
+    }
+
 

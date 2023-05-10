@@ -5,7 +5,7 @@
 #include "Screen.h"
 #include "Hud_double.h"
 #include "Hud_main.h"
-#include "ratio_error.cpp"
+#include "min_dimensions_error.h"
 
 void Screen::checkscreen() {
     if (count > 1) {
@@ -17,6 +17,10 @@ Screen::Screen(int h, int w, std::shared_ptr<Hud> h_, const std::string &gamemod
                                                                                        sgamemode{gamemodegs} {
     if (h / w > 1) {
         throw ratio_error("ratio_error\n");
+    }
+    if(h<300 || w<500)
+    {
+        throw min_dimensions_error("min_dimensions_error\n");
     }
     count += 1;
     checkscreen();
@@ -64,9 +68,9 @@ void Screen::hplay(float amount) {
     }
 }
 
-void Screen::hdouble_the_win(float amount, const std::string& color) {
+void Screen::hdouble_the_win(float amount) {
     if (std::shared_ptr<Hud_double> hd = std::dynamic_pointer_cast<Hud_double>(h)) {
-        hd->double_the_win(amount, color);
+        hd->double_the_win(amount);
     } else {
         std::cout << "cast pointer nereușit\n";
     }

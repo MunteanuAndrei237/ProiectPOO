@@ -3,11 +3,13 @@
 #include <ctime>
 #include <exception>
 #include <stdexcept>
-#include "Gamemode.cpp"
-#include "Hud.cpp"
-#include "Hud_main.cpp"
-#include "Hud_double.cpp"
-#include "Screen.cpp"
+#include "Gamemode.h"
+#include "Hud.h"
+#include "Hud_main.h"
+#include "Hud_double.h"
+#include "Screen.h"
+#include "min_dimensions_error.h"
+#include "ratio_error.h"
 
 int main() {
     srand(time(nullptr));
@@ -36,11 +38,11 @@ int main() {
         Screen screen2(1080, 1920, hd.clone(), {"classic"});
         std::cout << screen2;
         screen2.hinsertbalance(300);
-        screen2.hdouble_the_win(20, "black");
-        screen2.hdouble_the_win(20, "black");
-        screen2.hdouble_the_win(20, "black");
-        screen2.hcashout();
+        screen2.hdouble_the_win(20);
         screen2.showscreen();
+    }
+    catch (min_dimensions_error &err) {
+        std::cout << err.what() << "\n";
     }
     catch (ratio_error &err) {
         std::cout << err.what() << "\n";

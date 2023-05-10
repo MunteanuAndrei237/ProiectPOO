@@ -7,6 +7,8 @@
 
 #include <memory>
 #include "Hud.h"
+#include "Gamemode.h"
+
 
 class Screen {
     int height;
@@ -38,7 +40,7 @@ public:
 
     void hplay(float amount);
 
-    void hdouble_the_win(float amount, const std::string& color);
+    void hdouble_the_win(float amount);
 };
 
 
