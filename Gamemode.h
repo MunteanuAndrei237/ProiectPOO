@@ -15,7 +15,7 @@ class Gamemode {
     int rows;
     int columns;
 public:
-    explicit Gamemode(const std::string &gs);
+    explicit Gamemode(std::string &gs);
 
     Gamemode(const Gamemode &other) ;
 

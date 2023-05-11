@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 #include "Gamemode.h"
-    Gamemode::Gamemode(const std::string &gs) : gamemode{gs} {
+    Gamemode::Gamemode(std::string &gs) : gamemode{gs} {
         if (gamemode == "classic") {
             weights = {0.15, 0.2, 0.2, 0.05, 0.2, 0.2};
             icons = {"cherry", "orange", "banana", "seven", "plum", "melon"};
