@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Slot machine
 =======
 # OOP Template
