@@ -1,7 +1,7 @@
 # Slot machine
 =======
 # OOP Template
->>>>>>> c4201db (-)
+c4201db (-)
 
 ### Tema 0
 

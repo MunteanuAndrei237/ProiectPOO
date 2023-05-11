@@ -7,14 +7,14 @@
 #include "Hud.h"
 #include "Hud_main.h"
 #include "Hud_double.h"
-#include "Hud_exemplu.h"
+#include "Hud_changegamemode.h"
 #include "Screen.h"
 #include "min_dimensions_error.h"
 #include "ratio_error.h"
 
 int main() {
     srand(time(nullptr));
-    /*Gamemode g1("classic");
+    Gamemode g1("classic");
     Gamemode g2 = g1;
     Gamemode g3(g1);
     Gamemode g4("shining_crown");
@@ -24,9 +24,14 @@ int main() {
     std::cout << h1;
     h1.play(20, g1);
     h1.insert_balance(300);
-    h1.play(50, g2);*/
+    h1.play(50, g2);
+    Hud_changegamemode hcg;
+    Gamemode* p=&g1;
+    std::cout << g1;
+    hcg.changegamemode(p);
+    std::cout << g1;
     try {
-        Hud_exemplu he;
+        Hud_changegamemode he;
         Screen screenhudexemplu(2160, 4096, he.clone(), {"shining_crown"});
         screenhudexemplu.hcashout();
         screenhudexemplu.showscreen();
