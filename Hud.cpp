@@ -8,11 +8,6 @@
         return balance;
     }
 
-    void Hud::setbalance(float newamount) {
-
-        balance = newamount;
-    }
-
     Hud::Hud() {};
 
 Hud::Hud(const Hud &other) : balance(other.balance), total_inserted(other.total_inserted) {};

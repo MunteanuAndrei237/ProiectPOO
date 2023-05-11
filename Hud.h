@@ -17,8 +17,6 @@ public:
 
     [[nodiscard]] float getbalance() const;
 
-    void setbalance(float newamount);
-
     Hud();
 
     Hud(const Hud &other);
