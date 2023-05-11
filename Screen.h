@@ -20,7 +20,7 @@ public:
 
     static void checkscreen();
 
-    Screen(int h, int w, std::shared_ptr<Hud> h_, const std::string &gamemodegs);
+    Screen(int h, int w, std::shared_ptr<Hud> h_, std::string &gamemodegs);
 
     Screen(const Screen &other);
 
