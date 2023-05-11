@@ -7,13 +7,14 @@
 #include "Hud.h"
 #include "Hud_main.h"
 #include "Hud_double.h"
+#include "Hud_exemplu.h"
 #include "Screen.h"
 #include "min_dimensions_error.h"
 #include "ratio_error.h"
 
 int main() {
     srand(time(nullptr));
-    Gamemode g1("classic");
+    /*Gamemode g1("classic");
     Gamemode g2 = g1;
     Gamemode g3(g1);
     Gamemode g4("shining_crown");
@@ -23,9 +24,13 @@ int main() {
     std::cout << h1;
     h1.play(20, g1);
     h1.insert_balance(300);
-    h1.play(50, g2);
+    h1.play(50, g2);*/
     try {
-        Hud_main hm;
+        Hud_exemplu he;
+        Screen screenhudexemplu(2160, 4096, he.clone(), {"shining_crown"});
+        screenhudexemplu.hcashout();
+        screenhudexemplu.showscreen();
+        /*Hud_main hm;
         Hud_double hd;
         Screen screen1(1080, 1920, hm.clone(), {"classic"});
         std::cout << screen1;
@@ -39,7 +44,7 @@ int main() {
         std::cout << screen2;
         screen2.hinsertbalance(300);
         screen2.hdouble_the_win(20);
-        screen2.showscreen();
+        screen2.showscreen();*/
     }
     catch (min_dimensions_error &err) {
         std::cout << err.what() << "\n";
