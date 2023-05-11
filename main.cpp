@@ -30,7 +30,7 @@ int main() {
         Screen screenhudexemplu(2160, 4096, he.clone(), {"shining_crown"});
         screenhudexemplu.hcashout();
         screenhudexemplu.showscreen();
-        /*Hud_main hm;
+        Hud_main hm;
         Hud_double hd;
         Screen screen1(1080, 1920, hm.clone(), {"classic"});
         std::cout << screen1;
@@ -44,7 +44,7 @@ int main() {
         std::cout << screen2;
         screen2.hinsertbalance(300);
         screen2.hdouble_the_win(20);
-        screen2.showscreen();*/
+        screen2.showscreen();
     }
     catch (min_dimensions_error &err) {
         std::cout << err.what() << "\n";
