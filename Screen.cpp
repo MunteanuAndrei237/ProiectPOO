@@ -13,7 +13,7 @@ void Screen::checkscreen() {
     }
 }
 
-Screen::Screen(int h, int w, std::shared_ptr<Hud> h_, std::string &gamemodegs) : height{h}, width{w}, h{move(h_)},
+Screen::Screen(int h, int w, std::shared_ptr<Hud> h_, const std::string &gamemodegs) : height{h}, width{w}, h{move(h_)},
                                                                                        sgamemode{gamemodegs} {
     if (h / w > 1) {
         throw ratio_error("ratio_error\n");
