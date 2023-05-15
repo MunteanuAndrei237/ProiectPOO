@@ -20,8 +20,12 @@ Hud::Hud(const Hud &other) : balance(other.balance), total_inserted(other.total_
 
 Hud::~Hud() {};
 
+     void Hud::print(std::ostream& os) const {
+        os << "Balance: " << balance << "\n"<<"Total inserted: "<<total_inserted<<"\n";
+    }
+
      std::ostream &operator<<(std::ostream &os, const Hud &hudcout) {
-        os << "balance: " << hudcout.balance << ", total inserted: " << hudcout.total_inserted << "\n";
+         hudcout.print(os);
         return os;
     }
 

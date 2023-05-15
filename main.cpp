@@ -1,15 +1,12 @@
 #include <iostream>
 #include <string>
 #include <ctime>
-#include <exception>
-#include <stdexcept>
 #include "Gamemode.h"
 #include "Hud.h"
 #include "Hud_main.h"
 #include "Hud_double.h"
 #include "Hud_changegamemode.h"
 #include "Screen.h"
-#include "min_dimensions_error.h"
 #include "ratio_error.h"
 
 int main() {
@@ -30,11 +27,9 @@ int main() {
     std::cout << g1;
     hcg.changegamemode(p);
     std::cout << g1;
+    Hud_double hprint;
+    std::cout<<hprint;
     try {
-        Hud_changegamemode he;
-        Screen screenhudexemplu(2160, 4096, he.clone(), {"shining_crown"});
-        screenhudexemplu.hcashout();
-        screenhudexemplu.showscreen();
         Hud_main hm;
         Hud_double hd;
         Screen screen1(1080, 1920, hm.clone(), {"classic"});
@@ -51,17 +46,8 @@ int main() {
         screen2.hdouble_the_win(20);
         screen2.showscreen();
     }
-    catch (min_dimensions_error &err) {
-        std::cout << err.what() << "\n";
-    }
     catch (ratio_error &err) {
-        std::cout << err.what() << "\n";
-    }
-    catch (std::invalid_argument &err) {
-        std::cout << err.what() << "\n";
-    }
-    catch (std::exception &err) {
-        std::cout << err.what() << "\n";
+        std::cout << err.what() <<"Please create a screen with a different height and width.\n";
     }
     return 0;
 }

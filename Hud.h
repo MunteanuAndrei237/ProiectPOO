@@ -31,6 +31,7 @@ public:
 
     virtual void cashout()=0;
 
+    virtual void print(std::ostream& os) const ;
 };
 
 

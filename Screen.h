@@ -26,7 +26,7 @@ public:
 
     friend void swop(Screen &s1, Screen &s2);
 
-    Screen &operator=( Screen &other);
+    Screen &operator=(Screen &other);
 
     ~Screen();
 

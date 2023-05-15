@@ -6,6 +6,7 @@
 #include "Hud_double.h"
 #include "Hud_main.h"
 #include "min_dimensions_error.h"
+#include "max_dimension_error.h"
 
 void Screen::checkscreen() {
     if (count > 1) {
@@ -16,11 +17,15 @@ void Screen::checkscreen() {
 Screen::Screen(int h, int w, std::shared_ptr<Hud> h_, const std::string &gamemodegs) : height{h}, width{w}, h{move(h_)},
                                                                                        sgamemode{gamemodegs} {
     if (h / w > 1) {
-        throw ratio_error("ratio_error\n");
+        throw ratio_error();
     }
     if(h<300 || w<500)
     {
-        throw min_dimensions_error("min_dimensions_error\n");
+        throw min_dimensions_error();
+    }
+    if(h>4096 || w>2160)
+    {
+        throw max_dimension_error();
     }
     count += 1;
     checkscreen();

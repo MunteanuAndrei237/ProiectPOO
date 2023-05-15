@@ -3,6 +3,7 @@
 //
 #pragma once
 #include <stdexcept>
-class ratio_error : public std::invalid_argument {
-    using invalid_argument::invalid_argument;
+#include <exception>
+class ratio_error : public std::exception {
+    using exception::exception;
 };

@@ -24,6 +24,8 @@ public:
     void double_the_win(float amount) ;
 
     void cashout() override;
+
+    void print(std::ostream& os) const override;
 };
 
 
