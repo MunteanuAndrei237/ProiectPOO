@@ -23,11 +23,6 @@
             std::cout<<"100$";
             h.setbalance(h.getbalance()+100);
         }
-        else if(chance<99)
-        {
-            std::cout<<"1000$";
-            h.setbalance(h.getbalance()+1000);
-        }
         std::cout<<"\n";
         static welcome_spin ws;
         return ws;

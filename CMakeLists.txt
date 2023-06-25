@@ -80,7 +80,7 @@ endfunction()
 ###############################################################################
 
 # NOTE: uwpdate executable name in .github/workflows/cmake.yml:25 when changing name here
-add_executable(${PROJECT_NAME} Gamemode.cpp Hud.cpp Hud_double.cpp Hud_main.cpp Screen.cpp main.cpp Hud_changegamemode.h Hud_changegamemode.cpp max_dimension_error.h max_dimension_error.cpp bet_builder.cpp bet.cpp betting_ticket.cpp betting_ticket_builder.cpp welcome_spin.cpp)
+add_executable(${PROJECT_NAME} Gamemode.cpp Gamemode.h Hud.cpp Hud.h Hud_double.cpp Hud_double.h Hud_main.cpp Hud_main.h Screen.cpp  Screen.h main.cpp Hud_changegamemode.h Hud_changegamemode.cpp max_dimension_error.h max_dimension_error.cpp bet_builder.cpp bet.cpp betting_ticket.cpp betting_ticket_builder.cpp welcome_spin.cpp)
 #welcome_spin.cpp bet.cpp bet_builder.h bet_builder.cpp betting_ticket.h betting_ticket.cpp betting_ticket_builder.h betting_ticket_builder.cpp
 ###############################################################################
 
