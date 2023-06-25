@@ -13,7 +13,7 @@ public:
     betting_ticket_builder();
     betting_ticket_builder& bet1(bet& x,const std::string &teamname);
     betting_ticket_builder& bet2(bet& x,const std::string &teamname);
-    betting_ticket_builder& bet3(bet& x,const std::string &teamname);
+    [[maybe_unused]]  betting_ticket_builder& bet3(bet& x,const std::string &teamname);
     betting_ticket build();
 };
 
