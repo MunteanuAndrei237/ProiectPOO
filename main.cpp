@@ -35,13 +35,12 @@ int main() {
     h1.play(20, g1);
     h1.insert_balance(300);
     h1.play(50, g2);
-    Gamemode* p=&g1;
     std::cout << g1;
     Hud_double hprint;
     std::cout<<hprint;
     try {
         Hud_main hm;
-        Hud_double hd;
+        [[shadowVariable]] Hud_double hd;
         Screen screen1(1080, 1920, hm.clone(), {"classic"});
         std::cout << screen1;
         screen1.hinsertbalance(300);
