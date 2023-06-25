@@ -21,7 +21,7 @@
             bt.totalbettingodds*=x.getbot2();
         return *this;
     }
-    betting_ticket_builder&  betting_ticket_builder:: bet3(bet& x,const std::string &teamname) {
+[[maybe_unused]] betting_ticket_builder&  betting_ticket_builder:: bet3(bet& x,const std::string &teamname) {
          bt.bet3 = x;
         if(teamname==x.getteam1())
             bt.totalbettingodds*=x.getbot1();
