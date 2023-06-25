@@ -23,7 +23,7 @@
             std::cout<<"100$";
             h.setbalance(h.getbalance()+100);
         }
-        else if(chance<100)
+        else if(chance<99)
         {
             std::cout<<"1000$";
             h.setbalance(h.getbalance()+1000);

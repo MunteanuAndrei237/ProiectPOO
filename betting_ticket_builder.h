@@ -11,9 +11,9 @@ private:
     betting_ticket bt;
 public:
     betting_ticket_builder();
-    betting_ticket_builder& bet1(bet& x,std::string teamname);
-    betting_ticket_builder& bet2(bet& x,std::string teamname);
-    betting_ticket_builder& bet3(bet& x,std::string teamname);
+    betting_ticket_builder& bet1(bet& x,const std::string &teamname);
+    betting_ticket_builder& bet2(bet& x,const std::string &teamname);
+    betting_ticket_builder& bet3(bet& x,const std::string &teamname);
     betting_ticket build();
 };
 
