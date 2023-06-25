@@ -34,4 +34,7 @@ Hud::~Hud() {};
         balance += amount;
         total_inserted += amount;
     }
+    void Hud::setbalance(float amount) {
+         balance=amount;
+     }
 

@@ -100,6 +100,6 @@ void Hud_double::cashout() {
 
 void Hud_double::print(std::ostream &os) const {
     Hud::print(os);
-    os << "Tries" << tries << "\n";
+    os << "Tries: " << tries << "\n";
 }
 
