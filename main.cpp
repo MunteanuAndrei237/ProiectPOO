@@ -40,7 +40,7 @@ int main() {
     std::cout<<hprint;
     try {
         Hud_main hm;
-        [[shadowVariable]] Hud_double hd;
+         Hud_double hd2;
         Screen screen1(1080, 1920, hm.clone(), {"classic"});
         std::cout << screen1;
         screen1.hinsertbalance(300);
@@ -49,7 +49,7 @@ int main() {
         screen1.hplay(40);
         screen1.hcashout();
         screen1.showscreen();
-        Screen screen2(1080, 1920, hd.clone(), {"classic"});
+        Screen screen2(1080, 1920, hd2.clone(), {"classic"});
         std::cout << screen2;
         screen2.hinsertbalance(300);
         screen2.hdouble_the_win(20);

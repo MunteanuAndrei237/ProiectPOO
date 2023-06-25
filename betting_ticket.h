@@ -5,7 +5,7 @@
 #ifndef OOP_BETTING_TICKET_H
 #define OOP_BETTING_TICKET_H
 #include "bet.h"
-#include "hud.h"
+#include "Hud.h"
 #include <iostream>
 //builder
 //max 3 bets per ticket,min one
