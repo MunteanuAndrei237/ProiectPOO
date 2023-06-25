@@ -22,7 +22,7 @@ int main() {
     bet magnus_hikaru = b.game_name("Chess").team1("Magnus Carlsen").team2("Hikaru Nakamura").betting_odd_team1(1.12).betting_odd_team2(8.2).build();
     bet farul_cfr = b.game_name("Fotbal Liga 1").team1("farul constanta").team2("CFR").betting_odd_team1(1.46).betting_odd_team2(2.83).build();
     betting_ticket_builder bt;
-    betting_ticket lucky_ticket=bt.bet1(fcsb_rapid,"FCSB").bet2(magnus_hikaru,"Magnus Carlsen").build();
+    betting_ticket lucky_ticket=bt.bet1(fcsb_rapid,"FCSB").bet2(magnus_hikaru,"Magnus Carlsen").bet3(farul_cfr,"CFR").build();
     lucky_ticket.placeticket(10,hd);
     Gamemode g1("classic");
     Gamemode g2 = g1;
